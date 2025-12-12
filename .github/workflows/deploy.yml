@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
     inputs:
       name:
-        description: "Deploy the calculator-api from prod"
-        default: "prod"
+        description: "Deploy the calculator-api from test"
+        default: "test"
 
 permissions:
   id-token: write
