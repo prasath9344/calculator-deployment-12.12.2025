@@ -239,6 +239,7 @@ jobs:
 
           echo "HOST=${{ secrets.HOST }}" >> /home/ubuntu/.env
           echo "USER=${{ secrets.USER }}" >> /home/ubuntu/.env
+          ECHO "EC2_SSH_PRIVATE_KEY={{ secrets.EC2_SSH_PRIVATE_KEY}}" >> /home/ubuntu/.env
 
           chmod 600 /home/ubuntu/.env
         
