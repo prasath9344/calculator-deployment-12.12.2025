@@ -259,7 +259,7 @@ jobs:
 
           [Install]
           WantedBy=multi-user.target
-          SERVICE
+          EOF
 
       - name: Enable systemd service on EC2
         run: |
