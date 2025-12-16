@@ -13,16 +13,16 @@ permissions:
 
 env:
   AWS_REGION: us-east-1
-  ECR_REPOSITORY: calculator      
+  ECR_REPOSITORY: calculator-repo
   CONTAINER_NAME: calculator-container
   INSTANCE_TYPE: t2.micro
-  AMI_ID: ami-0ecb62995f68bb549
+  AMI_ID: ami-0c398cb65a93047f2
   KEY_NAME: calsi-key
-  INSTANCE_NAME: calculator-machine
-  SECURITY_GROUP_NAME: launch-wizard-1
-  SECURITY_GROUP_DESCRIPTION: "launch-wizard-1 created via GitHub Actions"
+  INSTANCE_NAME: ec2-server-16.12.2025
+  SECURITY_GROUP_NAME: launch-wizard-2
+  SECURITY_GROUP_DESCRIPTION: "launch-wizard-2 created via GitHub Actions"
   VPC_ID: vpc-0d1bf1da3a43aa0bd
-  EIP_ALLOCATION_ID: eipalloc-0b25bc2cb81990b5d
+  EIP_ALLOCATION_ID: eipalloc-0fa3a0c4588c0e2c9
   ECR_ROLE_NAME: ec2-ecr-access-role 
 
 jobs:
@@ -128,7 +128,7 @@ jobs:
             --count 1 \
             --instance-type ${{ env.INSTANCE_TYPE }} \
             --key-name ${{ env.KEY_NAME }} \
-            --block-device-mappings '[{"DeviceName":"/dev/sda1","Ebs":{"Encrypted":false,"DeleteOnTermination":true,"SnapshotId":"snap-0631691c299b02084","VolumeSize":20,"VolumeType":"gp2"}}]' \
+            --block-device-mappings '[{"DeviceName":"/dev/sda1","Ebs":{"Encrypted":false,"DeleteOnTermination":true,"SnapshotId":"snap-0631691c299b02084","VolumeSize":8,"VolumeType":"gp2"}}]' \
             --network-interfaces '[{"AssociatePublicIpAddress":true,"DeviceIndex":0,"Groups":["${{ env.security_group_id }}"]}]' \
             --iam-instance-profile Name=${{ env.ECR_ROLE_NAME }} \
             --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=${{ env.INSTANCE_NAME }}}]' \
